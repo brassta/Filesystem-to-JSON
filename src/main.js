@@ -14,8 +14,6 @@ let mainWindow = null;
 const createWindow = () => {
   let iconPath = '';
 
-  console.log('ikonica', iconPath);
-
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width         : 1000,
@@ -64,7 +62,6 @@ app.on('activate', () => {
 // Main process
 ipcMain.handle('openFolderDialog', async (event, args) => {
 
-  console.log(__dirname);
   let finale = '';
   await dialog.showOpenDialog({
     properties: ['openDirectory']
