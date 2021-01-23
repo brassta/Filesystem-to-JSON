@@ -40,6 +40,9 @@ const toolbarCloseButton = document.querySelector('#closebutton-toolbar');
 const toolbarContainer = document.querySelector('.toolbar');
 const displayContainer = document.querySelector('.display');
 
+const prefixTextArea = document.getElementById('prefix-text');
+const sufixTextArea = document.getElementById('sufix-text');
+
 const displayTextArea = displayContainer.querySelector('textarea');
 
 folderDialogButton.addEventListener('click', ((evt) => {
@@ -57,7 +60,8 @@ folderDialogButton.addEventListener('click', ((evt) => {
     if(response.length){
       displayContainer.classList.add('visible');
       toolbarContainer.classList.add('display-opened');
-      displayTextArea.value = JSON.stringify(JSON.parse(response), undefined, 2);
+       const outValue = JSON.stringify(JSON.parse(response), undefined, 2);
+      displayTextArea.value = prefixTextArea.value + outValue+ sufixTextArea.value;
     }
 
   });
@@ -66,6 +70,7 @@ folderDialogButton.addEventListener('click', ((evt) => {
 clearButton.addEventListener('click', (() => {
   displayTextArea.value = '';
   attributeNamesField.value = '';
+  sufixTextArea.value = prefixTextArea.value = '';
 
 }));
 
